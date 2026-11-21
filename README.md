@@ -4,7 +4,7 @@
 
 Can pregnancies at high risk of ending in a perinatal death (fetal death at 22 weeks or more, or neonatal death in the first 7 days) be identified? This model uses the public-use files of the National Center for Health Statistics (NCHS, CDC) and follows the staged framework for clinical prediction models.
 
-> **Status (2026-11-21): outcome card written and decisions D1 and D2 resolved.** Fetal component data: public-use fetal death files 2016–2023. Prediction point: antenatal (option A). Data adapter done: 8 years (2016–2023), 22,337 to 27,006 perinatal events per year ([`data/outputs_01_build_perinatal.txt`](data/outputs_01_build_perinatal.txt)). Count audit done ([`count_audit.md`](count_audit.md)): G1 passes. Decisions D3 to D5 approved. Next: predictor table and gates G2 and G3.
+> **Status (2026-11-21): outcome card written and decisions D1 and D2 resolved.** Fetal component data: public-use fetal death files 2016–2023. Prediction point: antenatal (option A). Data adapter done: 8 years (2016–2023), 22,337 to 27,006 perinatal events per year ([`data/outputs_01_build_perinatal.txt`](data/outputs_01_build_perinatal.txt)). Count audit done ([`count_audit.md`](count_audit.md)): G1 passes. Decisions D3 to D5 approved. Predictor table (24 parameters) and gates G2 and G3 passed ([`predictor_table.md`](predictor_table.md)). Next: modeling (S8).
 
 [Versión en español](README_es.md)
 
@@ -25,6 +25,7 @@ The NCHS files are kept **outside the repository**, in the sibling folder `../NC
 |---|---|---|---|
 | 1 | `notebooks/01_build_cohorts.ipynb` | `data/interim/perinatal_<year>.parquet` (one row per product of 22 weeks or more: live births with their death at 0 to 6 days and fetal deaths) and `data/outputs_01_build_perinatal.txt` | S2 (data adapter) |
 | 2 | `notebooks/02_count_audit.ipynb` | `data/outputs_02_count_audit.txt`; written up in [`count_audit.md`](count_audit.md) | S4, G1 |
+| 3 | `notebooks/03_predictors_g2_g3.ipynb` | `data/contract/perinatal_nchs_v1/` (contract table) and `data/outputs_03_predictors_g2_g3.txt`; written up in [`predictor_table.md`](predictor_table.md) | S7, G2, G3 |
 
 Readers: `libraries/nchs_reader.py` (linked births and infant deaths) and `libraries/perinatal_builder.py` (fetal deaths and the join of both components). They read the ZIP files directly, without extracting them.
 

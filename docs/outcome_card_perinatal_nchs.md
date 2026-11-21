@@ -62,7 +62,7 @@ Taken after the audit ([`../count_audit.md`](../count_audit.md)) and before any 
 
 ## 4. Predictors (S7)
 
-The final list is fixed with the count audit. With option A:
+**Fixed on 2026-11-21: 24 parameters** (list and coverage in [`../predictor_table.md`](../predictor_table.md)), with decisions D3 and D4. Option A frame:
 
 | Field | Value |
 |---|---|
@@ -77,8 +77,8 @@ The final list is fixed with the count audit. With option A:
 
 | Field | Value |
 |---|---|
-| Events | Thousands per cohort; gate G3 is checked with the Riley et al. criteria |
-| Primary learner | Fixed in S8 with the framework rule on events per parameter |
+| Events | Development 2016–2021: 149,057 in 22,681,046 products; temporal test 2022–2023: 45,117. **G3 passes** (observed Cox-Snell R² 0.0058; 37,147 products required) |
+| Primary learner | 6,211 events per parameter (20 or more): the best base learner of a preliminary run |
 
 ## 6. Classification criteria (G4)
 

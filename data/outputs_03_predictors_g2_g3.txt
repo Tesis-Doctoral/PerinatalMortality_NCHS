@@ -1,0 +1,84 @@
+Predictor table and gates G2 and G3 of the perinatal model (aggregate output only)
+
+== Q-P1 Contract table: 29963276 products, 24 parameters; % missing per predictor
+                            pct_missing
+age                                0.00
+race_black                         0.92
+race_hispanic                      0.92
+race_asian                         0.92
+race_other                         0.92
+educ_some_college                  1.49
+educ_bachelor_plus                 1.49
+born_outside_us                    0.23
+wic                                1.19
+prior_living_1                     0.17
+prior_living_2plus                 0.17
+prior_child_died                   0.28
+interval_lt18                      4.50
+interval_18_59                     4.50
+interval_60plus                    4.50
+prior_cesarean                     0.13
+bmi                                2.28
+smoked_before_pregnancy            0.48
+care_after_first_trimester         2.31
+no_prenatal_care                   2.31
+pregestational_diabetes            0.13
+chronic_hypertension               0.13
+infertility_treatment              0.13
+multiple_pregnancy                 0.00
+
+== Gate G2: design checks
+no delivery, product, outcome or excluded field among the predictors                       True
+no missingness indicator among the predictors                                              True
+unit of analysis is the product and the group is the unit itself (no mother identifier)    True
+
+== G2 leakage check: products by number of unknown predictor fields (development years)
+           products  pct_products
+n_unknown                        
+0          20198572         89.05
+1            591646          2.61
+2            509795          2.25
+3            949750          4.19
+4            151598          0.67
+5             80132          0.35
+6            125366          0.55
+7             23857          0.11
+8             19607          0.09
+9             12901          0.06
+10             4667          0.02
+11             3523          0.02
+12             2288          0.01
+13             1657          0.01
+14             1050          0.00
+15              941          0.00
+16              654          0.00
+17              849          0.00
+18              430          0.00
+19             1182          0.01
+20              158          0.00
+21              143          0.00
+22              280          0.00
+
+== G2 leakage check: AUROC of the number of unknown fields alone
+0.639
+
+== Gate G3: sample size (Riley et al.)
+development products                           22681046
+development events                               149057
+prevalence                                      0.00657
+candidate parameters                                 24
+events per parameter                             6210.7
+sample used (all events + 3% of non-events)      825892
+Cox-Snell R2 observed (cross-validated)          0.0058
+Cox-Snell R2 max                                 0.0761
+% of maximum                                        7.6
+n required (shrinkage)                            37147
+n required (optimism)                              6278
+n required (overall risk)                            11
+n required                                        37147
+events required                                     245
+parameters supported                              14654
+gate G3                                          PASSED
+
+== Primary learner rule (events per parameter >= 20: best base learner of a preliminary run)
+events per parameter = 6210.7

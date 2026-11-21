@@ -62,7 +62,7 @@ Tomadas después de la auditoría ([`../count_audit_es.md`](../count_audit_es.md
 
 ## 4. Predictores (E7)
 
-La lista definitiva se fija con la auditoría de conteos. Con la opción A:
+**Fijados el 21/11/2026: 24 parámetros** (lista y cobertura en [`../predictor_table_es.md`](../predictor_table_es.md)), con las decisiones D3 y D4. Marco de la opción A:
 
 | Campo | Valor |
 |---|---|
@@ -77,8 +77,8 @@ La lista definitiva se fija con la auditoría de conteos. Con la opción A:
 
 | Campo | Valor |
 |---|---|
-| Eventos | Del orden de miles por cohorte; la puerta P3 se verifica con los criterios de Riley et al. |
-| Modelo principal | Se fija en E8 con la regla del framework según los eventos por parámetro |
+| Eventos | Desarrollo 2016–2021: 149.057 en 22.681.046 productos; prueba temporal 2022–2023: 45.117. **P3 pasa** (R² de Cox-Snell observado 0,0058; se requerían 37.147 productos) |
+| Modelo principal | 6.211 eventos por parámetro (20 o más): el mejor modelo base de una corrida preliminar |
 
 ## 6. Criterios de clasificación (P4)
 
