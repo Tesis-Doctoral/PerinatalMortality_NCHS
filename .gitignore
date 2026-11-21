@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+
+# NCHS files are public but are not redistributed here (see README): raw downloads,
+# extracted files and the derived Parquet tables stay local. Only aggregate reports
+# data/outputs_*.txt are committed; check each one (cells under 10 suppressed) before committing.
+data/*
+!data/.gitkeep
+!data/outputs_*.txt
+*.zip
+*.parquet
+*.csv
+*.xlsx
