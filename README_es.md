@@ -4,7 +4,7 @@
 
 ¿Se puede identificar a los embarazos con riesgo alto de terminar en una muerte perinatal (muerte fetal de 22 semanas o más, o muerte neonatal en los primeros 7 días)? Este modelo usa los archivos públicos del National Center for Health Statistics (NCHS, CDC) y sigue el framework por etapas para modelos de predicción clínica.
 
-> **Estado (21/11/2026): ficha del desenlace escrita y decisiones D1 y D2 resueltas.** Datos del componente fetal: archivos públicos de muertes fetales 2016–2023. Punto de predicción: prenatal (opción A). Siguiente: adaptador del componente fetal. El adaptador del componente neonatal precoz está listo.
+> **Estado (21/11/2026): ficha del desenlace escrita y decisiones D1 y D2 resueltas.** Datos del componente fetal: archivos públicos de muertes fetales 2016–2023. Punto de predicción: prenatal (opción A). Adaptador de datos hecho: 8 años (2016–2023), de 22.337 a 27.006 eventos perinatales por año ([`data/outputs_01_build_perinatal.txt`](data/outputs_01_build_perinatal.txt)). Siguiente: auditoría de conteos.
 
 [English version](README.md)
 
@@ -15,12 +15,16 @@
 
 ## Datos
 
+Cómo se producen los archivos, del hospital a la descarga: [`docs/data_source_nchs_es.md`](docs/data_source_nchs_es.md).
+
 Los archivos de NCHS se guardan **fuera del repositorio**, en la carpeta hermana `../NCHS_data/raw/` (otra ubicación se indica con la variable de entorno `NCHS_RAW_DIR`). Son públicos, pero no se redistribuyen: solo se publica el código. Su uso está sujeto al acuerdo de uso de datos de NCHS: análisis estadístico únicamente, sin intentar identificar personas ni unir con datos identificables. Los reportes no muestran celdas con menos de 10 casos.
 
 ## Orden de ejecución
 
 | Orden | Notebook | Crea | Etapa del framework |
 |---|---|---|---|
-| 1 | `notebooks/01_build_cohorts_es.ipynb` | `data/interim/cohort_<año>.parquet` (nacidos vivos y muerte neonatal precoz) | E2 (adaptador de datos) |
+| 1 | `notebooks/01_build_cohorts_es.ipynb` | `data/interim/perinatal_<año>.parquet` (una fila por producto de 22 semanas o más: nacidos vivos con su muerte de 0 a 6 días y muertes fetales) y `data/outputs_01_build_perinatal.txt` | E2 (adaptador de datos) |
+
+Lectores: `libraries/nchs_reader.py` (nacimientos vinculados con defunciones) y `libraries/perinatal_builder.py` (muertes fetales y unión de los dos componentes). Leen los ZIP directamente, sin descomprimirlos.
 
 *Confidencial: uso interno del proyecto de investigación.*

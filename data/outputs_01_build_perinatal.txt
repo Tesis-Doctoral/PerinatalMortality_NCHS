@@ -1,0 +1,33 @@
+Perinatal population (live births and fetal deaths of 22-47 weeks, US-resident mothers), aggregate counts only
+
+      products  live_births  fetal_deaths  early_neonatal_deaths  perinatal_events  products_ge28  events_ge28  per_1000
+year                                                                                                                    
+2016   3956689      3938288         18401                   8605             27006        3925818        15364      6.83
+2017   3866265      3848558         17707                   8222             25929        3836190        14877      6.71
+2018   3802569      3785243         17326                   7998             25324        3773428        14501      6.66
+2019   3757755      3741187         16568                   7605             24173        3728796        13983      6.43
+2020   3623630      3607479         16151                   7110             23261        3596715        13601      6.42
+2021   3674138      3657762         16376                   6988             23364        3646536        13771      6.36
+2022   3677156      3661524         15632                   7148             22780        3650268        13657      6.20
+2023   3605074      3589826         15248                   7089             22337        3578533        13282      6.20
+
+Percentage unknown or not stated by component (all years)
+             pct_unknown_live_births  pct_unknown_fetal_deaths
+MRACEHISP                        0.9                       4.4
+MEDUC                            1.4                      13.1
+MBSTATE_REC                      0.2                       6.1
+WIC                              1.1                      18.7
+PRIORLIVE                        0.2                       3.4
+PRIORDEAD                        0.3                       4.8
+ILLB_R                           3.2                      12.8
+PRECARE                          2.3                      12.5
+CIG_REC                          0.4                       8.3
+BMI                              2.2                      12.9
+RF_PDIAB                         0.1                       5.9
+RF_GDIAB                         0.1                       5.9
+RF_PHYPE                         0.1                       5.9
+RF_GHYPE                         0.1                       5.9
+RF_EHYPE                         0.1                       5.9
+RF_INFT                          0.1                       5.9
+RF_CESAR                         0.1                       5.9
+RF_CESARN                        0.1                       6.3
