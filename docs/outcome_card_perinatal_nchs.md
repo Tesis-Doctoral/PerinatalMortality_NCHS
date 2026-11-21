@@ -26,7 +26,20 @@ Perinatal mortality covers, per WHO and ICD-10, the period from 22 completed wee
 
 ## 3. Decisions pending before the audit
 
-**D1. Data for the fetal component.** The early neonatal component can already be built from the linked files (the adapter `libraries/nchs_reader.py` is ready). The fetal component needs the NCHS public-use fetal death file. The download page must be checked for which years are published, in what format and with which variables, and whether they use the same 2003 revised certificate as the births.
+**D1. Data for the fetal component (resolved 2026-11-21).** The NCHS public-use fetal death files with cause of death (`Fetal<year>US_COD.zip`, 2016–2023) are used, kept in `../NCHS_data/raw/fetal/` with their user guides. What the review showed:
+
+| Aspect | Finding |
+|---|---|
+| Records | One row per fetal death: 39,574 to 51,391 per year; they include deaths under 20 weeks that some states report |
+| Fetal deaths at 22 weeks or more, US-resident mothers | 15,248 (2023) to 18,401 (2016) per year; at 28 weeks or more, 9,514 to 11,336 |
+| Gestational age | Edited obstetric estimate (`OEGest_Comb`, positions 340–341), the one NCHS uses for tabulation; unknown in 1,120 to 1,805 records per year |
+| Timing of death (`ESTOFD`) | At 22 weeks or more: about 50% before labor, about 15% during labor and about 38% unknown; some states do not report it |
+| Certificate | The 2003 revised report was phased in and used by every state from 2018; in 2016 and 2017 some revised items are missing in some states |
+| Record layout | 3,052 characters per record in 2016–2017 and 2,653 from 2018; the positions of the prenatal fields are the same in both layouts but differ from those of the birth file |
+| Prenatal variables shared with the birth file | Age, race and Hispanic origin, education, born in the US or abroad, WIC, earlier births now living and now dead, interval since the last live birth, month prenatal care began, smoking, pre-pregnancy BMI, pre-existing and gestational diabetes and hypertension, eclampsia, infertility, earlier cesareans, plurality |
+| Variables the fetal file does **not** have | Marital status, payment source, other earlier terminations, earlier preterm birth, infections, interval since the last pregnancy. They cannot enter the model, because they would be missing for the whole fetal component |
+
+**Consequence:** the perinatal population is built by year of delivery: live births of 22 weeks or more with their death at 0 to 6 days (linked files) plus fetal deaths of 22 weeks or more (fetal files), one row per product. Gestational age of the fetal component comes from `OEGest_Comb`; that of the live-birth component from `COMBGEST`. Their comparability is checked in the count audit.
 
 **D2. Prediction point.** This is the central decision for this outcome. Most fetal deaths occur before labor, so **they cannot be predicted at birth**: by then they have already happened. The options are:
 
@@ -73,7 +86,7 @@ The final list is fixed with the count audit. With option A:
 
 ## 8. Next tasks
 
-1. D1: confirm and download the fetal death file.
+1. ~~D1: fetal death file~~ (2016–2023 downloaded and reviewed, 2026-11-21).
 2. ~~D2: prediction point~~ (option A, antenatal, 2026-11-20).
 3. Adapter for the fetal component and join with the early neonatal component.
 4. Count audit; predictors; gate G3; model and classification.

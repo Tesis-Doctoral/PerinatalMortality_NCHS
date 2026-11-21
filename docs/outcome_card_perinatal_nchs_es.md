@@ -26,7 +26,20 @@ La mortalidad perinatal comprende, según la OMS y la CIE-10, el período que va
 
 ## 3. Decisiones pendientes antes de la auditoría
 
-**D1. Datos del componente fetal.** El componente neonatal precoz ya se puede construir con los archivos vinculados (el adaptador `libraries/nchs_reader.py` está listo). El componente fetal necesita el archivo público de muertes fetales de NCHS. Hay que confirmar en la página de descarga qué años están publicados, en qué formato y con qué variables, y si usan el mismo certificado revisado de 2003 que los nacimientos.
+**D1. Datos del componente fetal (resuelta el 21/11/2026).** Se usan los archivos públicos de muertes fetales de NCHS con causa de muerte (`Fetal<año>US_COD.zip`, 2016–2023), guardados en `../NCHS_data/raw/fetal/` con sus guías de usuario. Lo que mostró la revisión:
+
+| Aspecto | Hallazgo |
+|---|---|
+| Registros | Una fila por muerte fetal: 39.574 a 51.391 por año; incluyen muertes de menos de 20 semanas que algunos estados reportan |
+| Muertes fetales de 22 semanas o más, madres residentes en EE. UU. | 15.248 (2023) a 18.401 (2016) por año; de 28 semanas o más, 9.514 a 11.336 |
+| Edad gestacional | Estimación obstétrica editada (`OEGest_Comb`, posiciones 340–341), la que NCHS usa para tabular; desconocida en 1.120 a 1.805 registros por año |
+| Momento de la muerte (`ESTOFD`) | En las de 22 semanas o más: cerca del 50% antes del trabajo de parto, cerca del 15% durante el trabajo de parto y cerca del 38% desconocido; algunos estados no lo reportan |
+| Certificado | El modelo revisado de 2003 se implantó por etapas y lo usan todos los estados desde 2018; en 2016 y 2017 algunos ítems revisados faltan en algunos estados |
+| Diseño de registro | 3.052 caracteres por registro en 2016–2017 y 2.653 desde 2018; las posiciones de los campos prenatales son iguales en ambos diseños, pero distintas a las del archivo de nacimientos |
+| Variables prenatales comunes con el archivo de nacimientos | Edad, raza y origen hispano, educación, nacida en EE. UU. o fuera, WIC, hijos vivos y muertos anteriores, intervalo desde el último nacido vivo, mes de inicio del control prenatal, tabaquismo, IMC antes del embarazo, diabetes e hipertensión previas y gestacionales, eclampsia, infertilidad, cesáreas anteriores, pluralidad |
+| Variables que **no** trae el archivo fetal | Estado civil, fuente de pago, otras terminaciones anteriores, parto pretérmino anterior, infecciones, intervalo desde el último embarazo. No pueden entrar al modelo, porque faltarían en todo el componente fetal |
+
+**Consecuencia:** la población perinatal se arma con el mismo año de parto: nacidos vivos de 22 semanas o más con su muerte de 0 a 6 días (archivos vinculados) más muertes fetales de 22 semanas o más (archivos fetales), una fila por producto. La edad gestacional del componente fetal sale de `OEGest_Comb`; la del componente de nacidos vivos, de `COMBGEST`. Su comparabilidad se revisa en la auditoría de conteos.
 
 **D2. Punto de predicción.** Es la decisión central de este desenlace. La mayoría de las muertes fetales ocurre antes del trabajo de parto, así que **no se pueden predecir al nacer**: a esa hora ya ocurrieron. Las opciones son:
 
@@ -73,7 +86,7 @@ La lista definitiva se fija con la auditoría de conteos. Con la opción A:
 
 ## 8. Próximas tareas
 
-1. D1: confirmar y descargar el archivo de muertes fetales.
+1. ~~D1: archivo de muertes fetales~~ (2016–2023 descargados y revisados, 21/11/2026).
 2. ~~D2: punto de predicción~~ (opción A, prenatal, 20/11/2026).
 3. Adaptador del componente fetal y unión con el componente neonatal precoz.
 4. Auditoría de conteos; predictores; puerta P3; modelo y clasificación.

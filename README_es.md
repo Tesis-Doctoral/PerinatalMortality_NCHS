@@ -4,7 +4,7 @@
 
 ¿Se puede identificar a los embarazos con riesgo alto de terminar en una muerte perinatal (muerte fetal de 22 semanas o más, o muerte neonatal en los primeros 7 días)? Este modelo usa los archivos públicos del National Center for Health Statistics (NCHS, CDC) y sigue el framework por etapas para modelos de predicción clínica.
 
-> **Estado (20/11/2026): ficha del desenlace escrita, con una decisión pendiente** (datos del componente fetal). Punto de predicción: prenatal (opción A). El adaptador del componente neonatal precoz está listo.
+> **Estado (21/11/2026): ficha del desenlace escrita y decisiones D1 y D2 resueltas.** Datos del componente fetal: archivos públicos de muertes fetales 2016–2023. Punto de predicción: prenatal (opción A). Siguiente: adaptador del componente fetal. El adaptador del componente neonatal precoz está listo.
 
 [English version](README.md)
 

@@ -49,7 +49,7 @@ BIRTH_FIELDS = {
     "PAY_REC": (436, 436, "int"),
     # obstetric history
     "PRIORLIVE": (171, 172, "int"), "PRIORDEAD": (173, 174, "int"), "PRIORTERM": (175, 176, "int"),
-    "ILP_R": (214, 216, "int"), "RF_PPB": (318, 318, "chr"), "RF_CESAR": (331, 331, "chr"),
+    "ILP_R": (214, 216, "int"), "ILLB_R": (198, 200, "int"), "RF_PPB": (318, 318, "chr"), "RF_CESAR": (331, 331, "chr"),
     "RF_CESARN": (332, 333, "int"),
     # current pregnancy
     "PRECARE": (224, 225, "int"), "PREVIS": (238, 239, "int"), "CIG_REC": (269, 269, "chr"),
@@ -175,13 +175,15 @@ def _read_member(zf, member, fields, chunk_records=CHUNK_RECORDS):
     return pd.DataFrame(cols)
 
 
-def build_cohort(cohort, raw_dir=RAW_DIR, out_dir=OUT_DIR, verbose=True):
+def build_cohort(cohort, raw_dir=RAW_DIR, out_dir=OUT_DIR, verbose=True, birth_fields=None, return_frame=False):
     """Build one birth cohort and write data/interim/cohort_<year>.parquet.
-    Returns a dict of aggregate counts (no record-level data)."""
+    Returns a dict of aggregate counts (no record-level data). With return_frame=True
+    nothing is written and (frame, summary) is returned; birth_fields selects the birth
+    fields to read (default: BIRTH_FIELDS)."""
     t = time.time()
     zpath, den_name, num_names = cohort_members(cohort, raw_dir)
     with zipfile.ZipFile(zpath) as zf:
-        births = _read_member(zf, den_name, BIRTH_FIELDS)
+        births = _read_member(zf, den_name, birth_fields or BIRTH_FIELDS)
         deaths = pd.concat([_read_member(zf, m, DEATH_FIELDS) for m in num_names], ignore_index=True)
 
     n_deaths_file = len(deaths)
@@ -216,12 +218,13 @@ def build_cohort(cohort, raw_dir=RAW_DIR, out_dir=OUT_DIR, verbose=True):
     if not_found > 0.01 * len(deaths):
         raise ValueError(f"cohort {cohort}: {not_found} of {len(deaths)} deaths did not join a birth")
 
-    out_dir = Path(out_dir)
-    out_dir.mkdir(parents=True, exist_ok=True)
-    final = out_dir / f"cohort_{cohort}.parquet"
-    tmp = final.with_suffix(".parquet.tmp")
-    merged.to_parquet(tmp, index=False)       # write to a temporary name first, so an interrupted
-    tmp.replace(final)                        # run never leaves a corrupted cohort file
+    if not return_frame:
+        out_dir = Path(out_dir)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        final = out_dir / f"cohort_{cohort}.parquet"
+        tmp = final.with_suffix(".parquet.tmp")
+        merged.to_parquet(tmp, index=False)       # write to a temporary name first, so an interrupted
+        tmp.replace(final)                        # run never leaves a corrupted cohort file
 
     summary = {
         "cohort": cohort,
@@ -239,4 +242,6 @@ def build_cohort(cohort, raw_dir=RAW_DIR, out_dir=OUT_DIR, verbose=True):
     }
     if verbose:
         print(summary)
+    if return_frame:
+        return merged, summary
     return summary

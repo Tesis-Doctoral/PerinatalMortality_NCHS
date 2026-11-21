@@ -4,7 +4,7 @@
 
 Can pregnancies at high risk of ending in a perinatal death (fetal death at 22 weeks or more, or neonatal death in the first 7 days) be identified? This model uses the public-use files of the National Center for Health Statistics (NCHS, CDC) and follows the staged framework for clinical prediction models.
 
-> **Status (2026-11-20): outcome card written, with one pending decision** (data for the fetal component). Prediction point: antenatal (option A). The adapter for the early neonatal component is ready.
+> **Status (2026-11-21): outcome card written and decisions D1 and D2 resolved.** Fetal component data: public-use fetal death files 2016–2023. Prediction point: antenatal (option A). Next: adapter for the fetal component. The adapter for the early neonatal component is ready.
 
 [Versión en español](README_es.md)
 
