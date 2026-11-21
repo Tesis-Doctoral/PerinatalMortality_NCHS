@@ -22,7 +22,7 @@ PRIORDEAD                        0.3                       4.8
 ILLB_R                           3.2                      12.8
 PRECARE                          2.3                      12.5
 CIG_REC                          0.4                       8.3
-CIG_0                            0.0                       0.9
+CIG_0                            0.4                       8.3
 BMI                              2.2                      12.9
 RF_PDIAB                         0.1                       5.9
 RF_GDIAB                         0.1                       5.9
