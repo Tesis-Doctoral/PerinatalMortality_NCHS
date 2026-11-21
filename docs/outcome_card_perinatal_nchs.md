@@ -50,6 +50,16 @@ Perinatal mortality covers, per WHO and ICD-10, the period from 22 completed wee
 
 **Decided on 2026-11-20: option A (antenatal)**, before any count by outcome. It is the only option in which the whole perinatal outcome, including the fetal component, occurs after the information. Option B is declared now as a possible return R3 (another prediction point) if model A is classified as *neither*; in that case it is reported as an early identifier for the fetal component.
 
+## 3b. Decisions from the count audit (2026-11-21)
+
+Taken after the audit ([`../count_audit.md`](../count_audit.md)) and before any model:
+
+| Decision | Choice | Reason |
+|---|---|---|
+| D3. Unknowns | The "unknown" code is treated as missing, never as a category or with a missingness indicator; imputation inside the training part of each split, without using the type of certificate. Sensitivities: complete records only; a model with only the number of unknown fields (leakage check) | The report of fetal death has 5 to 18 times more unknowns than the birth certificate (Q-C7): using them would be leakage |
+| D4. Variables that depend on the length of pregnancy | Gestational diabetes, gestational hypertension and eclampsia are excluded; "smoked during pregnancy" is replaced by "smoked before pregnancy" (`CIG_0`); the start of prenatal care is grouped as first trimester, later or no care. Sensitivity: all variables in the population of 28 weeks or more | A short pregnancy has less time for them to be diagnosed or recorded; they would leak gestational age at delivery |
+| D5. Gestational age of the fetal component | Edited obstetric estimate (`OEGest_Comb`); combined gestation as sensitivity | It is the one NCHS uses for tabulation; the two agree on the same week in only 62–64% (Q-C8) |
+
 ## 4. Predictors (S7)
 
 The final list is fixed with the count audit. With option A:

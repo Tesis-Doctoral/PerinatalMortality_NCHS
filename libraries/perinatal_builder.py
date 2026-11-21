@@ -39,6 +39,7 @@ SHARED = {
     "ILLB_R": ((198, 200, "int"), (197, 199)),
     "PRECARE": ((224, 225, "int"), (202, 203)),
     "CIG_REC": ((269, 269, "chr"), (238, 238)),
+    "CIG_0": ((253, 254, "int"), (230, 231)),       # cigarettes per day before pregnancy (decision D4)
     "BMI": ((283, 286, "dec"), (245, 248)),
     "RF_PDIAB": ((313, 313, "chr"), (257, 257)),
     "RF_GDIAB": ((314, 314, "chr"), (258, 258)),

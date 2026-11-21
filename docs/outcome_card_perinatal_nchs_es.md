@@ -50,6 +50,16 @@ La mortalidad perinatal comprende, según la OMS y la CIE-10, el período que va
 
 **Decidido el 20/11/2026: opción A (prenatal)**, antes de cualquier conteo por desenlace. Es la única opción en la que todo el desenlace perinatal, incluido el componente fetal, ocurre después de la información. La opción B queda declarada desde ahora como posible retorno R3 (otro punto de predicción) si el modelo A queda clasificado como *ninguno*; en ese caso se reporta como identificador temprano para el componente fetal.
 
+## 3b. Decisiones de la auditoría de conteos (21/11/2026)
+
+Tomadas después de la auditoría ([`../count_audit_es.md`](../count_audit_es.md)) y antes de cualquier modelo:
+
+| Decisión | Elección | Razón |
+|---|---|---|
+| D3. Desconocidos | El código "desconocido" se trata como faltante, nunca como categoría ni con indicador de faltante; imputación dentro del entrenamiento de cada partición, sin usar el tipo de certificado. Sensibilidades: solo registros completos; modelo con solo el número de campos desconocidos (verificación de fuga) | El reporte de muerte fetal tiene de 5 a 18 veces más desconocidos que el certificado de nacimiento (Q-C7): usarlos sería fuga |
+| D4. Variables que dependen de la duración del embarazo | Se excluyen diabetes gestacional, hipertensión gestacional y eclampsia; "fumó durante el embarazo" se reemplaza por "fumaba antes del embarazo" (`CIG_0`); el inicio del control prenatal se agrupa en primer trimestre, después o sin control. Sensibilidad: todas las variables en la población de 28 semanas o más | Un embarazo corto tiene menos tiempo para que se diagnostiquen o registren; filtrarían la edad gestacional al parto |
+| D5. Edad gestacional del componente fetal | Estimación obstétrica editada (`OEGest_Comb`); gestación combinada como sensibilidad | Es la que NCHS usa para tabular; las dos coinciden en la misma semana solo en el 62–64% (Q-C8) |
+
 ## 4. Predictores (E7)
 
 La lista definitiva se fija con la auditoría de conteos. Con la opción A:

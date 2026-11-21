@@ -1,0 +1,229 @@
+Count audit of the perinatal population (aggregate counts only; 1-9 shown as <10)
+
+== Q-C1 Population flow by year and component
+                  records  foreign_resident  ga_unknown  ga_under_22  ga_over_47  population
+year component                                                                              
+2016 fetal_death    51391               100        1672        31218           0       18401
+     live_birth   3956112             10237        3457         4130           0     3938288
+2017 fetal_death    49170                81        1805        29577           0       17707
+     live_birth   3864754              9254        2760         4182           0     3848558
+2018 fetal_death    47676               113        1593        28644           0       17326
+     live_birth   3801534              9822        2509         3960           0     3785243
+2019 fetal_death    46007               131        1540        27768           0       16568
+     live_birth   3757582             10042        2407         3946           0     3741187
+2020 fetal_death    41816                94        1120        24451           0       16151
+     live_birth   3619826              6179        2478         3690           0     3607479
+2021 fetal_death    42428                99        1462        24491           0       16376
+     live_birth   3669928              5636        2993         3537           0     3657762
+2022 fetal_death    40113               195        1462        22824           0       15632
+     live_birth   3676029              8271        2671         3563           0     3661524
+2023 fetal_death    39574               117        1183        23026           0       15248
+     live_birth   3605081              9064        2642         3549           0     3589826
+
+== Q-C2 Events by year (population: 22-47 weeks, US residents)
+      products  events  fetal  early_neonatal  neonatal_first_24h  products_ge28  events_ge28  per_1000  pct_fetal
+year                                                                                                              
+2016   3956689   27006  18401            8605                5107        3925818        15364      6.83       68.1
+2017   3866265   25929  17707            8222                5356        3836190        14877      6.71       68.3
+2018   3802569   25324  17326            7998                5161        3773428        14501      6.66       68.4
+2019   3757755   24173  16568            7605                5136        3728796        13983      6.43       68.5
+2020   3623630   23261  16151            7110                4823        3596715        13601      6.42       69.4
+2021   3674138   23364  16376            6988                4556        3646536        13771      6.36       70.1
+2022   3677156   22780  15632            7148                4697        3650268        13657      6.20       68.6
+2023   3605074   22337  15248            7089                4620        3578533        13282      6.20       68.3
+
+== Q-C3 Estimated time of fetal death (N before labor, L/A during labor, U unknown)
+         N     U     L    A  blank
+year                              
+2016  8184  6787  1583  936    911
+2017  8462  6615  1427  905    298
+2018  8322  6663  1418  923      0
+2019  8050  6281  1412  825      0
+2020  7803  6214  1384  750      0
+2021  8149  6072  1429  726      0
+2022  7871  5729  1319  713      0
+2023  7775  5519  1293  661      0
+
+== Gate G1: reference counts reproduced
+2016    True
+2017    True
+2018    True
+2019    True
+2020    True
+2021    True
+2022    True
+2023    True
+
+== Q-C4 MRACEHISP: products and % of the population
+                n    pct
+1        15319382  51.13
+2         4289584  14.32
+3          222861   0.74
+4         1854749   6.19
+5           77813   0.26
+6          680964   2.27
+7         7241757  24.17
+8          274957   0.92
+missing      1209   0.00
+
+== Q-C4 MEDUC: products and % of the population
+               n    pct
+1         947589   3.16
+2        2658449   8.87
+3        7711600  25.74
+4        5698901  19.02
+5        2474142   8.26
+6        6251701  20.86
+7        2920880   9.75
+8         852955   2.85
+9         445850   1.49
+missing     1209   0.00
+
+== Q-C4 MBSTATE_REC: products and % of the population
+          n    pct
+1  23130598  77.20
+2   6764225  22.58
+3     68453   0.23
+
+== Q-C4 WIC: products and % of the population
+                n    pct
+N        19533738  65.19
+U          356630   1.19
+Y        10071699  33.61
+missing      1209   0.00
+
+== Q-C4 CIG_REC: products and % of the population
+                n    pct
+N        28192060  94.09
+U          139271   0.46
+Y         1630736   5.44
+missing      1209   0.00
+
+== Q-C4 RF_PDIAB: products and % of the population
+                n    pct
+N        29614021  98.83
+U           36454   0.12
+Y          311592   1.04
+missing      1209   0.00
+
+== Q-C4 RF_GDIAB: products and % of the population
+                n    pct
+N        27750246  92.61
+U           36454   0.12
+Y         2175367   7.26
+missing      1209   0.00
+
+== Q-C4 RF_PHYPE: products and % of the population
+                n    pct
+N        29205038  97.47
+U           36454   0.12
+Y          720575   2.40
+missing      1209   0.00
+
+== Q-C4 RF_GHYPE: products and % of the population
+                n    pct
+N        27521019  91.85
+U           36454   0.12
+Y         2404594   8.03
+missing      1209   0.00
+
+== Q-C4 RF_EHYPE: products and % of the population
+                n    pct
+N        29845116  99.61
+U           36454   0.12
+Y           80497   0.27
+missing      1209   0.00
+
+== Q-C4 RF_INFT: products and % of the population
+                n    pct
+N        29303132  97.80
+U           36454   0.12
+Y          622481   2.08
+missing      1209   0.00
+
+== Q-C4 RF_CESAR: products and % of the population
+                n    pct
+N        25298836  84.43
+U           36454   0.12
+Y         4626777  15.44
+missing      1209   0.00
+
+== Q-C4 DPLURAL: products and % of the population
+          n    pct
+1  28979805  96.72
+2    957442   3.20
+3     24740   0.08
+4      1178   0.00
+5       111   0.00
+
+== Q-C5 Numeric candidates: unknown and percentiles (unknown codes excluded)
+           pct_unknown   p05   p25   p50   p75    p95  pct_first_birth_888
+field                                                                     
+MAGER             0.00  20.0  25.0  29.0  33.0   39.0                  NaN
+BMI               2.28  19.1  22.4  25.8  31.0   40.7                  NaN
+PRECARE           2.31   1.0   2.0   3.0   3.0    6.0                  NaN
+PRIORLIVE         0.17   0.0   0.0   1.0   2.0    4.0                  NaN
+PRIORDEAD         0.28   0.0   0.0   0.0   0.0    0.0                  NaN
+ILLB_R            3.24  13.0  24.0  37.0  63.0  128.0                38.11
+RF_CESARN         0.15   0.0   0.0   0.0   0.0    1.0                  NaN
+CIG_0             0.48   0.0   0.0   0.0   0.0    6.0                  NaN
+
+== Q-C6 % unknown by year, whole population
+year         2016  2017  2018  2019  2020  2021  2022  2023
+MRACEHISP     0.9   0.8   0.9   0.9   0.9   1.0   0.9   0.9
+MEDUC         1.3   1.3   1.3   1.5   1.5   1.6   1.7   1.8
+MBSTATE_REC   0.2   0.2   0.2   0.2   0.2   0.2   0.2   0.2
+WIC           1.3   1.2   1.2   1.2   1.1   1.2   1.2   1.2
+CIG_REC       0.5   0.5   0.5   0.5   0.4   0.4   0.4   0.4
+RF_PDIAB      0.1   0.1   0.1   0.1   0.1   0.1   0.2   0.2
+RF_GDIAB      0.1   0.1   0.1   0.1   0.1   0.1   0.2   0.2
+RF_PHYPE      0.1   0.1   0.1   0.1   0.1   0.1   0.2   0.2
+RF_GHYPE      0.1   0.1   0.1   0.1   0.1   0.1   0.2   0.2
+RF_EHYPE      0.1   0.1   0.1   0.1   0.1   0.1   0.2   0.2
+RF_INFT       0.1   0.1   0.1   0.1   0.1   0.1   0.2   0.2
+RF_CESAR      0.1   0.1   0.1   0.1   0.1   0.1   0.2   0.2
+DPLURAL       0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0
+MAGER         0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0
+BMI           2.8   2.5   2.3   2.3   2.0   2.0   2.1   2.3
+PRECARE       2.9   2.6   2.5   2.3   2.0   2.1   2.2   1.9
+PRIORLIVE     0.2   0.2   0.2   0.1   0.1   0.2   0.2   0.1
+PRIORDEAD     0.4   0.2   0.3   0.2   0.2   0.3   0.3   0.3
+ILLB_R        3.7   3.3   3.2   3.4   3.2   3.1   3.1   2.9
+RF_CESARN     0.2   0.1   0.1   0.1   0.1   0.2   0.2   0.2
+CIG_0         0.5   0.5   0.5   0.5   0.4   0.5   0.4   0.4
+
+== Q-C7 % unknown by component (live-birth certificate vs fetal death report)
+             live_births  fetal_deaths
+MRACEHISP            0.9           4.4
+MEDUC                1.4          13.1
+MBSTATE_REC          0.2           6.1
+WIC                  1.1          18.7
+CIG_REC              0.4           8.3
+RF_PDIAB             0.1           5.9
+RF_GDIAB             0.1           5.9
+RF_PHYPE             0.1           5.9
+RF_GHYPE             0.1           5.9
+RF_EHYPE             0.1           5.9
+RF_INFT              0.1           5.9
+RF_CESAR             0.1           5.9
+DPLURAL              0.0           0.0
+MAGER                0.0           0.0
+BMI                  2.2          12.9
+PRECARE              2.3          12.5
+PRIORLIVE            0.2           3.4
+PRIORDEAD            0.3           4.8
+ILLB_R               3.2          12.8
+RF_CESARN            0.1           6.3
+CIG_0                0.4           8.3
+
+== Q-C8 Fetal deaths: obstetric estimate (used) vs combined gestation
+      records_us  both_known  same_week_pct  within_1_week_pct  ge22_by_oe  ge22_by_combgest
+year                                                                                        
+2016       51291       25720           61.6               79.4       18401             19287
+2017       49089       24758           61.9               79.4       17707             18602
+2018       47563       24277           62.3               79.2       17326             18192
+2019       45876       23190           62.7               79.8       16568             17425
+2020       41722       22371           62.9               79.7       16151             16997
+2021       42329       22707           63.7               79.7       16376             17273
+2022       39918       21755           63.9               79.6       15632             16367
+2023       39457       21431           63.6               79.6       15248             16058
