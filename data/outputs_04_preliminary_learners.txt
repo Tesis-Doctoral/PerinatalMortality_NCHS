@@ -1,0 +1,152 @@
+Preliminary run of the base learners (perinatal model, development 2016-2021)
+
+== Development data
+development products (2016-2021)     22681046
+development events                     149057
+prevalence                            0.00657
+sample: events + 2% of non-events      600442
+fit/tune part                          480353
+comparison part                        120089
+events in comparison part               29812
+
+== Random search (20 combinations per learner, 3 inner folds on 30% of the fit part)
+                                                                                                                                                                                best combination  inner AUROC  minutes
+learner                                                                                                                                                                                                               
+LR                                                                                                                                                                {"C": 0.0002, "penalty": "l2"}       0.7221      0.7
+RF                                                                                                                           {"max_depth": null, "min_samples_leaf": 23, "max_features": "sqrt"}       0.7352      8.6
+ET                                                                                                                              {"max_depth": null, "min_samples_leaf": 39, "max_features": 0.3}       0.7297      8.7
+XGB      {"max_depth": 7, "learning_rate": 0.0105, "min_child_weight": 79.6815, "subsample": 0.9275, "colsample_bytree": 0.6472, "reg_lambda": 5.5315, "reg_alpha": 0.0429, "n_estimators": 695}       0.7374      8.4
+
+== Spread of the inner AUROC over the combinations tried (how much the search mattered)
+            min  median     max
+learner                        
+ET       0.7184  0.7266  0.7297
+LR       0.7044  0.7211  0.7221
+RF       0.7256  0.7333  0.7352
+XGB      0.7336  0.7362  0.7374
+
+== All combinations tried: LR
+    inner AUROC       C penalty
+0        0.7221  0.0002      l2
+1        0.7221  0.0004      l2
+2        0.7217  0.0012      l2
+3        0.7216  0.0020      l1
+4        0.7215  0.0024      l2
+5        0.7214  0.0080      l1
+6        0.7213  0.0073      l2
+7        0.7212  0.0353      l2
+8        0.7212  0.1970      l1
+9        0.7211  0.0444      l2
+10       0.7211  0.1532      l2
+11       0.7211  0.2190      l2
+12       0.7211  0.7724      l2
+13       0.7211  1.1126      l2
+14       0.7211  1.6374      l2
+15       0.7211  3.1221      l2
+16       0.7211  5.5298      l2
+17       0.7211  6.4552      l2
+18       0.7175  0.0006      l1
+19       0.7044  0.0003      l1
+
+== All combinations tried: RF
+    inner AUROC max_depth min_samples_leaf max_features
+0        0.7352      None               23         sqrt
+1        0.7351        20               56         sqrt
+2        0.7347        30               53          0.3
+3        0.7346        30               71          0.3
+4        0.7346      None               84          0.3
+5        0.7345        20               29          0.3
+6        0.7344        30               37          0.3
+7        0.7335        12               74         sqrt
+8        0.7335        12               61         sqrt
+9        0.7334        16              156         sqrt
+10       0.7332        16              123          0.5
+11       0.7331        12               23          0.5
+12       0.7314        16              382          0.3
+13       0.7313        16              394          0.3
+14       0.7309        20              310          0.5
+15       0.7302        20              556         sqrt
+16       0.7301        16              384          0.5
+17       0.7256         8               32          0.5
+18       0.7256         8               41          0.5
+19       0.7256         8               51          0.5
+
+== All combinations tried: ET
+    inner AUROC max_depth min_samples_leaf max_features
+0        0.7297      None               39          0.3
+1        0.7293      None              118          0.5
+2        0.7290        16               29          0.3
+3        0.7285        30               48         sqrt
+4        0.7281        16              181          0.5
+5        0.7276        16              223          0.5
+6        0.7275        20               95         sqrt
+7        0.7272        12               58          0.5
+8        0.7272        12               26          0.5
+9        0.7269      None              236          0.3
+10       0.7263        20              167         sqrt
+11       0.7259        12              134          0.3
+12       0.7251        20              268         sqrt
+13       0.7248      None              462          0.3
+14       0.7247        30              312         sqrt
+15       0.7238      None              653          0.3
+16       0.7235        16              700          0.5
+17       0.7202         8               83         sqrt
+18       0.7196         8               73          0.3
+19       0.7184         8              255          0.5
+
+== All combinations tried: XGB
+    inner AUROC max_depth  learning_rate  min_child_weight  subsample  colsample_bytree  reg_lambda  reg_alpha
+0        0.7374         7         0.0105           79.6815     0.9275            0.6472      5.5315     0.0429
+1        0.7371         6         0.0374           23.3050     0.8190            0.6470      3.3635     0.0016
+2        0.7370         6         0.0270            1.3367     0.6970            0.8543      8.8833     0.8853
+3        0.7369         6         0.0576           49.8753     0.6048            0.6324      0.1932     0.0222
+4        0.7368         5         0.0103            1.3968     0.6457            0.7320      0.1661     0.0013
+5        0.7365         8         0.0206           29.4904     0.9876            0.8569      0.1548     0.2442
+6        0.7365         5         0.0295            4.8820     0.9793            0.9006      0.3536     0.1446
+7        0.7364         8         0.0324           13.2398     0.8703            0.8660      0.7960     0.0798
+8        0.7364         4         0.0352            5.5063     0.8636            0.9525      4.0462     0.0042
+9        0.7363         4         0.0921           13.4958     0.9240            0.9633      9.7818     0.0314
+10       0.7361         7         0.1329           26.7985     0.7427            0.6792      6.7237     0.3818
+11       0.7360         3         0.0146           40.0774     0.7494            0.7310      0.1441     0.7817
+12       0.7360         9         0.0496            7.2145     0.6022            0.7483      1.2132     0.3326
+13       0.7358         3         0.0125           99.4740     0.8505            0.7039      0.2508     0.4101
+14       0.7358        10         0.0474            8.9398     0.6545            0.6681      0.1631     0.0028
+15       0.7357         3         0.0192           25.1301     0.7249            0.6318      3.2410     0.0019
+16       0.7354         3         0.0120            8.0478     0.9866            0.8895      1.1890     0.0023
+17       0.7353         7         0.0911            2.4886     0.6532            0.6247      0.5385     0.0164
+18       0.7336         9         0.1756            1.0377     0.6577            0.7464      6.6906     0.0514
+19       0.7336        10         0.1334            8.5823     0.7976            0.8811      1.6727     0.0406
+
+== Preliminary comparison on the 20% part (prevalence 0.00656)
+                                  AUROC  AUROC 2.5%  AUROC 97.5%  AUPRC (weighted)  observed/expected  events in top 10% (%)
+LR                               0.7219      0.7182       0.7252            0.0361              0.837                   38.2
+RF                               0.7367      0.7328       0.7395            0.0618              0.937                   40.7
+ET                               0.7321      0.7285       0.7350            0.0493              0.985                   39.4
+XGB                              0.7390      0.7352       0.7420            0.0653              0.990                   40.8
+Stack                            0.7383      0.7343       0.7413            0.0669              0.992                   40.9
+XGB native missing (diagnostic)  0.7679      0.7640       0.7710            0.1230              0.968                   48.3
+
+== Selection
+best base learner by AUROC                             XGB
+primary learner (rule)                                 XGB
+Stack - primary AUROC         -0.0007 (-0.0012 to -0.0003)
+ensemble adopted                                     False
+
+== Confusion matrices and accuracy (weighted to the full population of the comparison part)
+                                            TP     FN      FP       TN  accuracy  sensitivity  specificity     PPV      NPV
+flagged learner                                                                                                            
+top 10% LR                               11391  18421  443000  4070850    0.8984        0.382       0.9019  0.0251  0.99550
+        RF                               12137  17675  442250  4071600    0.8988        0.407       0.9020  0.0267  0.99568
+        ET                               11753  18059  442650  4071200    0.8986        0.394       0.9019  0.0259  0.99558
+        XGB                              12173  17639  442200  4071650    0.8988        0.408       0.9020  0.0268  0.99569
+        Stack                            12191  17621  442200  4071650    0.8988        0.409       0.9020  0.0268  0.99569
+        XGB native missing (diagnostic)  14396  15416  440000  4073850    0.8998        0.483       0.9025  0.0317  0.99623
+top 5%  LR                                8038  21774  219150  4294700    0.9470        0.270       0.9514  0.0354  0.99496
+        RF                                9193  20619  218000  4295850    0.9475        0.308       0.9517  0.0405  0.99522
+        ET                                8753  21059  218450  4295400    0.9473        0.294       0.9516  0.0385  0.99512
+        XGB                               9244  20568  217950  4295900    0.9475        0.310       0.9517  0.0407  0.99523
+        Stack                             9253  20559  217950  4295900    0.9475        0.310       0.9517  0.0407  0.99524
+        XGB native missing (diagnostic)  11580  18232  215650  4298200    0.9485        0.388       0.9522  0.0510  0.99578
+
+== Reference: accuracy of flagging nobody (all predicted without event)
+0.9934

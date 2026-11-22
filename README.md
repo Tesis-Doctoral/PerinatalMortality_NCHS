@@ -26,6 +26,9 @@ The NCHS files are kept **outside the repository**, in the sibling folder `../NC
 | 1 | `notebooks/01_build_cohorts.ipynb` | `data/interim/perinatal_<year>.parquet` (one row per product of 22 weeks or more: live births with their death at 0 to 6 days and fetal deaths) and `data/outputs_01_build_perinatal.txt` | S2 (data adapter) |
 | 2 | `notebooks/02_count_audit.ipynb` | `data/outputs_02_count_audit.txt`; written up in [`count_audit.md`](count_audit.md) | S4, G1 |
 | 3 | `notebooks/03_predictors_g2_g3.ipynb` | `data/contract/perinatal_nchs_v1/` (contract table) and `data/outputs_03_predictors_g2_g3.txt`; written up in [`predictor_table.md`](predictor_table.md) | S7, G2, G3 |
+| 4 | `notebooks/04_preliminary_learners.ipynb` | `data/outputs_04_preliminary_learners.txt` (preliminary run: hyperparameter search and choice of the primary learner) | S8 |
+| 5 | `notebooks/05_main_evaluation.ipynb` | `data/outputs_05_main_evaluation.txt` (recalibrated internal validation, temporal validation, sensitivities and classification) | S8, S9, G4 |
+| 6 | `notebooks/06_return_r4.ipynb` | `data/contract/perinatal_nchs_r4/` and `data/outputs_06_return_r4.txt` (return R4: 28 weeks or more, complete records, finer predictors; G2, G3, preliminary run, evaluation and classification) | R4, S7–S9, G2–G4 |
 
 Readers: `libraries/nchs_reader.py` (linked births and infant deaths) and `libraries/perinatal_builder.py` (fetal deaths and the join of both components). They read the ZIP files directly, without extracting them.
 

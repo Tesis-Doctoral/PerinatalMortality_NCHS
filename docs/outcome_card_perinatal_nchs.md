@@ -87,7 +87,7 @@ Taken after the audit ([`../count_audit.md`](../count_audit.md)) and before any 
 | C1, events already present | Applicable: with option A the event occurs after the information |
 | C2, outcome with time | Applicable |
 | C3, detection bias | Not applicable: the outcome comes from certificates, not from a test |
-| C4, stability over time | Applicable: development with cohorts 2016–2021 and temporal test with 2022–2023 |
+| C4, stability over time | Applicable: development with cohorts 2016–2021 and temporal test with 2022–2023. Since 22/11/2026 (framework 1.1, before running return R4) the temporal slope must lie between 0.90 and 1.10; under rule 1.0 (95% CI including 1) version 1 did not meet C4, under 1.1 it does, and its classification does not change (*neither*, because of C2) |
 
 ## 7. Data and conditions of use
 
@@ -100,5 +100,12 @@ Taken after the audit ([`../count_audit.md`](../count_audit.md)) and before any 
 2. ~~D2: prediction point~~ (option A, antenatal, 2026-11-20).
 3. Adapter for the fetal component and join with the early neonatal component.
 4. Count audit; predictors; gate G3; model and classification.
+
+## 9. Return R4 (22/11/2026)
+
+- **What changed:** population of 28 weeks or more; 28 predictors (adds gestational diabetes, gestational hypertension, eclampsia and smoking in pregnancy, and finer versions of the other variables); main analysis on complete records only; median imputation as sensitivity. C4 rule of framework 1.1, fixed before running.
+- **Result:** G2 and G3 pass. XGBoost AUROC 0.676 (0.674–0.679); temporal 0.677, slope 0.98. Classification: **neither** (C2 and C4 not met).
+- **Reading:** 63% of events vs 89% of products have a complete record, so unknowns concentrate in the events; without them and without weeks 22–27, discrimination falls. With all records and imputation, 0.715.
+- **Returns used:** 1 of 2. The next one declared is R3 (option B, at admission for delivery).
 
 *Confidential: internal use of the research project.*

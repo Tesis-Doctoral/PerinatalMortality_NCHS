@@ -87,7 +87,7 @@ Tomadas después de la auditoría ([`../count_audit_es.md`](../count_audit_es.md
 | C1, eventos ya presentes | Aplica: con la opción A el evento ocurre después de la información |
 | C2, desenlace con tiempo | Aplica |
 | C3, sesgo de detección | No aplica: el desenlace sale de los certificados, no de un examen |
-| C4, estabilidad en el tiempo | Aplica: desarrollo con las cohortes 2016–2021 y prueba temporal con 2022–2023 |
+| C4, estabilidad en el tiempo | Aplica: desarrollo con las cohortes 2016–2021 y prueba temporal con 2022–2023. Desde el 22/11/2026 (framework 1.1, antes de correr el retorno R4) la pendiente temporal debe quedar entre 0,90 y 1,10; con la regla 1.0 (IC 95% que incluya 1) la versión 1 no cumplía C4, con la 1.1 sí, y su clasificación no cambia (*ninguno*, por C2) |
 
 ## 7. Datos y condiciones de uso
 
@@ -100,5 +100,12 @@ Tomadas después de la auditoría ([`../count_audit_es.md`](../count_audit_es.md
 2. ~~D2: punto de predicción~~ (opción A, prenatal, 20/11/2026).
 3. Adaptador del componente fetal y unión con el componente neonatal precoz.
 4. Auditoría de conteos; predictores; puerta P3; modelo y clasificación.
+
+## 9. Retorno R4 (22/11/2026)
+
+- **Qué cambió:** población de 28 semanas o más; 28 predictores (agrega diabetes gestacional, hipertensión gestacional, eclampsia y tabaquismo en el embarazo, y versiones más finas de las demás variables); análisis principal solo con registros completos; imputación por la mediana como sensibilidad. Regla de C4 del framework 1.1, fijada antes de correr.
+- **Resultado:** P2 y P3 pasan. XGBoost AUROC 0,676 (0,674–0,679); temporal 0,677, pendiente 0,98. Clasificación: **ninguno** (no cumple C2 ni C4).
+- **Lectura:** tienen registro completo el 63% de los eventos frente al 89% de los productos, así que los desconocidos se concentran en los eventos; sin ellos y sin las 22–27 semanas, la discriminación baja. Con todos los registros e imputación, 0,715.
+- **Retornos usados:** 1 de 2. El siguiente declarado es R3 (opción B, al ingreso al parto).
 
 *Confidencial: uso interno del proyecto de investigación.*

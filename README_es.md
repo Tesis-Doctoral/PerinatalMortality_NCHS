@@ -26,6 +26,9 @@ Los archivos de NCHS se guardan **fuera del repositorio**, en la carpeta hermana
 | 1 | `notebooks/01_build_cohorts_es.ipynb` | `data/interim/perinatal_<año>.parquet` (una fila por producto de 22 semanas o más: nacidos vivos con su muerte de 0 a 6 días y muertes fetales) y `data/outputs_01_build_perinatal.txt` | E2 (adaptador de datos) |
 | 2 | `notebooks/02_count_audit_es.ipynb` | `data/outputs_02_count_audit.txt`; documentado en [`count_audit_es.md`](count_audit_es.md) | E4, P1 |
 | 3 | `notebooks/03_predictors_g2_g3_es.ipynb` | `data/contract/perinatal_nchs_v1/` (tabla contrato) y `data/outputs_03_predictors_g2_g3.txt`; documentado en [`predictor_table_es.md`](predictor_table_es.md) | E7, P2, P3 |
+| 4 | `notebooks/04_preliminary_learners_es.ipynb` | `data/outputs_04_preliminary_learners.txt` (corrida preliminar: búsqueda de hiperparámetros y elección del modelo principal) | E8 |
+| 5 | `notebooks/05_main_evaluation_es.ipynb` | `data/outputs_05_main_evaluation.txt` (validación interna recalibrada, validación temporal, sensibilidades y clasificación) | E8, E9, P4 |
+| 6 | `notebooks/06_return_r4_es.ipynb` | `data/contract/perinatal_nchs_r4/` y `data/outputs_06_return_r4.txt` (retorno R4: 28 semanas o más, registros completos, predictores más finos; P2, P3, corrida preliminar, evaluación y clasificación) | R4, E7–E9, P2–P4 |
 
 Lectores: `libraries/nchs_reader.py` (nacimientos vinculados con defunciones) y `libraries/perinatal_builder.py` (muertes fetales y unión de los dos componentes). Leen los ZIP directamente, sin descomprimirlos.
 

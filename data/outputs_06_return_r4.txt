@@ -1,0 +1,265 @@
+Return R4 of the perinatal model (28 weeks or more, complete records)
+
+== R4 population (28 weeks or more) and complete records; 28 parameters
+      products  events  complete products  complete events  fetal deaths  complete fetal deaths
+year                                                                                           
+2016   3925818   15364            3498814             9619         11336                   6439
+2017   3836190   14877            3454997             9717         10903                   6507
+2018   3773428   14501            3411455             9507         10559                   6366
+2019   3728796   13983            3364245             9405         10209                   6373
+2020   3596715   13601            3275566             9153         10023                   6240
+2021   3646536   13771            3318619             9113         10208                   6242
+2022   3650268   13657            3309549             9103          9886                   6073
+2023   3578533   13282            3253478             8862          9514                   5797
+
+== % missing per R4 predictor (whole R4 population)
+age                            0.00
+race_black                     0.91
+race_aian                      0.91
+race_asian                     0.91
+race_nhopi                     0.91
+race_multiple                  0.91
+race_hispanic                  0.91
+education_level                1.46
+born_outside_us                0.21
+wic                            1.16
+prior_living_n                 0.16
+prior_dead_n                   0.27
+first_live_birth               3.20
+months_since_last_birth        3.20
+prior_cesareans_n              0.14
+bmi                            2.24
+cigarettes_before_pregnancy    0.46
+smoked_during_pregnancy        0.45
+prenatal_care_month            2.26
+no_prenatal_care               2.26
+pregestational_diabetes        0.11
+gestational_diabetes           0.11
+chronic_hypertension           0.11
+gestational_hypertension       0.11
+eclampsia                      0.11
+infertility_treatment          0.11
+twin                           0.00
+triplet_plus                   0.00
+
+== Main analysis data (28 weeks or more, complete records)
+                         products  events  sample rows
+development 2016-2021    20323696   56514       462437
+temporal test 2022-2023   6563027   17965       148757
+
+== Gate G2: design checks
+no delivery, product or outcome field among the predictors                         True
+no missingness indicator among the predictors                                      True
+main analysis on complete records (no imputation, no form signal from unknowns)    True
+
+== Gate G3: sample size (Riley et al.)
+parameters                     28
+events per parameter       2018.4
+Cox-Snell R2 observed     0.00116
+% of maximum                  3.1
+products required          217853
+products available       20323696
+gate G3                    PASSED
+
+== Random search (20 combinations per learner, 3 inner folds on 30% of the fit part)
+                                                                                                                                                                             best combination  inner AUROC  minutes
+learner                                                                                                                                                                                                            
+LR                                                                                                                                                             {"C": 0.0002, "penalty": "l2"}       0.6631      0.4
+RF                                                                                                                        {"max_depth": null, "min_samples_leaf": 23, "max_features": "sqrt"}       0.6716      6.9
+ET                                                                                                                           {"max_depth": null, "min_samples_leaf": 39, "max_features": 0.3}       0.6712      7.4
+XGB      {"max_depth": 6, "learning_rate": 0.027, "min_child_weight": 1.3367, "subsample": 0.697, "colsample_bytree": 0.8543, "reg_lambda": 8.8833, "reg_alpha": 0.8853, "n_estimators": 248}       0.6759      4.3
+
+== Spread of the inner AUROC over the combinations tried (how much the search mattered)
+            min  median     max
+learner                        
+ET       0.6582  0.6655  0.6712
+LR       0.5354  0.6611  0.6631
+RF       0.6601  0.6691  0.6716
+XGB      0.6695  0.6745  0.6759
+
+== All combinations tried: LR
+    inner AUROC       C penalty
+0        0.6631  0.0002      l2
+1        0.6631  0.0004      l2
+2        0.6625  0.0012      l2
+3        0.6621  0.0024      l2
+4        0.6615  0.0073      l2
+5        0.6612  0.0353      l2
+6        0.6612  0.0080      l1
+7        0.6611  0.0444      l2
+8        0.6611  0.1970      l1
+9        0.6611  0.1532      l2
+10       0.6611  0.2190      l2
+11       0.6611  0.7724      l2
+12       0.6611  1.1126      l2
+13       0.6611  1.6374      l2
+14       0.6611  3.1221      l2
+15       0.6611  5.5298      l2
+16       0.6611  6.4552      l2
+17       0.6557  0.0020      l1
+18       0.6205  0.0006      l1
+19       0.5354  0.0003      l1
+
+== All combinations tried: RF
+    inner AUROC max_depth min_samples_leaf max_features
+0        0.6716      None               23         sqrt
+1        0.6713        20               56         sqrt
+2        0.6709        20               29          0.3
+3        0.6699        30               37          0.3
+4        0.6697        30               71          0.3
+5        0.6695        30               53          0.3
+6        0.6694        12               61         sqrt
+7        0.6693        12               23          0.5
+8        0.6693        12               74         sqrt
+9        0.6692      None               84          0.3
+10       0.6690        16              156         sqrt
+11       0.6681        16              123          0.5
+12       0.6662        16              382          0.3
+13       0.6661        16              394          0.3
+14       0.6652        20              556         sqrt
+15       0.6651        20              310          0.5
+16       0.6646        16              384          0.5
+17       0.6604         8               41          0.5
+18       0.6604         8               32          0.5
+19       0.6601         8               51          0.5
+
+== All combinations tried: ET
+    inner AUROC max_depth min_samples_leaf max_features
+0        0.6712      None               39          0.3
+1        0.6708        16               29          0.3
+2        0.6697        30               48         sqrt
+3        0.6684      None              118          0.5
+4        0.6676        16              181          0.5
+5        0.6672        12               58          0.5
+6        0.6672        20               95         sqrt
+7        0.6670        16              223          0.5
+8        0.6669        12               26          0.5
+9        0.6657      None              236          0.3
+10       0.6654        20              167         sqrt
+11       0.6652        12              134          0.3
+12       0.6635        20              268         sqrt
+13       0.6632        30              312         sqrt
+14       0.6626      None              462          0.3
+15       0.6620         8               83         sqrt
+16       0.6615        16              700          0.5
+17       0.6611      None              653          0.3
+18       0.6603         8               73          0.3
+19       0.6582         8              255          0.5
+
+== All combinations tried: XGB
+    inner AUROC max_depth  learning_rate  min_child_weight  subsample  colsample_bytree  reg_lambda  reg_alpha
+0        0.6759         6         0.0270            1.3367     0.6970            0.8543      8.8833     0.8853
+1        0.6759         5         0.0103            1.3968     0.6457            0.7320      0.1661     0.0013
+2        0.6755         4         0.0352            5.5063     0.8636            0.9525      4.0462     0.0042
+3        0.6752         5         0.0295            4.8820     0.9793            0.9006      0.3536     0.1446
+4        0.6751         4         0.0921           13.4958     0.9240            0.9633      9.7818     0.0314
+5        0.6749         6         0.0374           23.3050     0.8190            0.6470      3.3635     0.0016
+6        0.6747         3         0.0192           25.1301     0.7249            0.6318      3.2410     0.0019
+7        0.6747         3         0.0120            8.0478     0.9866            0.8895      1.1890     0.0023
+8        0.6746         8         0.0206           29.4904     0.9876            0.8569      0.1548     0.2442
+9        0.6746         3         0.0146           40.0774     0.7494            0.7310      0.1441     0.7817
+10       0.6745         6         0.0576           49.8753     0.6048            0.6324      0.1932     0.0222
+11       0.6743         8         0.0324           13.2398     0.8703            0.8660      0.7960     0.0798
+12       0.6741         7         0.0105           79.6815     0.9275            0.6472      5.5315     0.0429
+13       0.6738         7         0.0911            2.4886     0.6532            0.6247      0.5385     0.0164
+14       0.6737         3         0.0125           99.4740     0.8505            0.7039      0.2508     0.4101
+15       0.6730         9         0.0496            7.2145     0.6022            0.7483      1.2132     0.3326
+16       0.6729        10         0.0474            8.9398     0.6545            0.6681      0.1631     0.0028
+17       0.6726         7         0.1329           26.7985     0.7427            0.6792      6.7237     0.3818
+18       0.6715         9         0.1756            1.0377     0.6577            0.7464      6.6906     0.0514
+19       0.6695        10         0.1334            8.5823     0.7976            0.8811      1.6727     0.0406
+
+== Preliminary comparison on the 20% part (prevalence 0.00278)
+        AUROC  AUROC 2.5%  AUROC 97.5%  AUPRC (weighted)  observed/expected  events in top 10% (%)
+LR     0.6577      0.6519       0.6628            0.0086              0.632                   29.2
+RF     0.6712      0.6657       0.6764            0.0122              0.949                   30.9
+ET     0.6712      0.6658       0.6762            0.0110              0.992                   30.5
+XGB    0.6746      0.6687       0.6796            0.0118              0.985                   31.0
+Stack  0.6745      0.6688       0.6793            0.0118              1.010                   30.9
+
+== Selection
+best base learner by AUROC                             XGB
+primary learner (rule)                                 XGB
+Stack - primary AUROC         -0.0001 (-0.0007 to +0.0006)
+ensemble adopted                                     False
+
+== Internal validation: 3 x 5-fold cross-validation, recalibrated (development 2016-2021)
+                                 XGB       LR
+events in top 5% (%)         21.8229  19.3197
+events in top 10% (%)        31.1274  29.3337
+AUROC                         0.6761   0.6598
+AUPRC                         0.0110   0.0077
+prevalence                    0.0028   0.0028
+Brier                         0.0028   0.0028
+calibration slope             0.9719   0.9717
+calibration intercept        -0.0035   0.0145
+observed/expected             0.9966   1.0146
+ECE                           0.0001   0.0005
+AUROC 2.5%                    0.6741   0.6573
+AUPRC 2.5%                    0.0105   0.0075
+calibration slope 2.5%        0.9715   0.9715
+calibration intercept 2.5%   -0.0086   0.0127
+observed/expected 2.5%        0.9915   1.0128
+AUROC 97.5%                   0.6787   0.6622
+AUPRC 97.5%                   0.0118   0.0080
+calibration slope 97.5%       0.9723   0.9720
+calibration intercept 97.5%  -0.0000   0.0169
+observed/expected 97.5%       1.0000   1.0170
+AUROC SD across repeats       0.0002   0.0000
+
+== Temporal validation: development 2016-2021, single test 2022-2023
+                                 XGB       LR
+events in top 5% (%)         21.8035  19.0036
+events in top 10% (%)        31.5168  28.5778
+AUROC                         0.6772   0.6595
+AUPRC                         0.0119   0.0076
+prevalence                    0.0027   0.0027
+Brier                         0.0027   0.0027
+calibration slope             0.9788   0.9767
+calibration intercept        -0.0434  -0.0153
+observed/expected             0.9578   0.9849
+ECE                           0.0001   0.0005
+AUROC 2.5%                    0.6722   0.6548
+AUPRC 2.5%                    0.0109   0.0073
+calibration slope 2.5%        0.9780   0.9763
+calibration intercept 2.5%   -0.0500  -0.0184
+observed/expected 2.5%        0.9516   0.9818
+AUROC 97.5%                   0.6817   0.6639
+AUPRC 97.5%                   0.0136   0.0086
+calibration slope 97.5%       0.9795   0.9771
+calibration intercept 97.5%  -0.0370  -0.0118
+observed/expected 97.5%       0.9640   0.9883
+
+== Sensitivity analyses (primary learner, out-of-fold predictions)
+                                     products (weighted)   events   AUROC
+all products (main)                           20352664.0  56514.0  0.6763
+fetal deaths vs no event                      20334317.0  38167.0  0.6904
+antepartum fetal deaths vs no event           20316279.0  20129.0  0.6802
+early neonatal deaths vs no event             20314497.0  18347.0  0.6471
+
+== Sensitivity: all records of 28 weeks or more, median imputation
+products    2.250748e+07
+events      8.609700e+04
+AUROC       7.152000e-01
+
+== Gate G4: classification of the R4 model (primary learner)
+C1 events already present      met by design (antenatal information precedes ...
+C2 outcome with time           NOT met (AUROC 0.676, 95% CI 0.674-0.679; requ...
+C3 detection bias              not applicable (the outcome does not depend on...
+C4 stability over time         NOT met (temporal AUROC 0.677; slope 0.98, 95%...
+events in top 10% vs chance                                           3.11 times
+classification                                                           NEITHER
+
+== Confusion matrix of the primary learner (out-of-fold, weighted to the development population)
+            TP     FN       FP        TN  accuracy  sensitivity  specificity     PPV      NPV
+flagged                                                                                      
+top 10%  17609  38905  2017700  18278450    0.8990        0.312       0.9006  0.0087  0.99788
+top 5%   12383  44131  1005300  19290850    0.9484        0.219       0.9505  0.0122  0.99772
+
+== Decision curve (primary learner)
+           net benefit model  net benefit treat all  % flagged
+threshold                                                     
+0.005                0.00037               -0.00223       6.52
+0.010                0.00018               -0.00730       1.90
+0.020                0.00007               -0.01757       0.56
+0.050                0.00001               -0.04971       0.08

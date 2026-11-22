@@ -1,0 +1,84 @@
+Main evaluation of the perinatal model (antenatal, option A)
+
+== Data
+                         products  events  sample rows
+development 2016-2021    22681046  149057       600442
+temporal test 2022-2023   7282230   45117       189841
+
+== Internal validation: 3 x 5-fold cross-validation, recalibrated (development 2016-2021)
+                                 XGB       LR
+events in top 5% (%)         30.9340  26.7323
+events in top 10% (%)        41.1762  38.4587
+AUROC                         0.7389   0.7220
+AUPRC                         0.0579   0.0351
+prevalence                    0.0066   0.0066
+Brier                         0.0063   0.0064
+calibration slope             1.0280   0.9627
+calibration intercept         0.0066   0.0005
+observed/expected             1.0065   1.0004
+ECE                           0.0002   0.0004
+AUROC 2.5%                    0.7374   0.7206
+AUPRC 2.5%                    0.0556   0.0341
+calibration slope 2.5%        1.0229   0.9620
+calibration intercept 2.5%    0.0037  -0.0028
+observed/expected 2.5%        1.0036   0.9973
+AUROC 97.5%                   0.7402   0.7235
+AUPRC 97.5%                   0.0610   0.0366
+calibration slope 97.5%       1.0453   0.9629
+calibration intercept 97.5%   0.0146   0.0060
+observed/expected 97.5%       1.0143   1.0059
+AUROC SD across repeats       0.0000   0.0000
+
+== Temporal validation: development 2016-2021, single test 2022-2023
+                                 XGB       LR
+events in top 5% (%)         29.5343  25.8816
+events in top 10% (%)        40.1844  37.2631
+AUROC                         0.7345   0.7164
+AUPRC                         0.0493   0.0319
+prevalence                    0.0062   0.0062
+Brier                         0.0060   0.0061
+calibration slope             0.9809   0.9812
+calibration intercept        -0.1090  -0.1080
+observed/expected             0.9000   0.8999
+ECE                           0.0007   0.0008
+AUROC 2.5%                    0.7319   0.7136
+AUPRC 2.5%                    0.0462   0.0299
+calibration slope 2.5%        0.9322   0.9804
+calibration intercept 2.5%   -0.1180  -0.1160
+observed/expected 2.5%        0.8922   0.8931
+AUROC 97.5%                   0.7375   0.7192
+AUPRC 97.5%                   0.0542   0.0342
+calibration slope 97.5%       0.9819   0.9827
+calibration intercept 97.5%  -0.0989  -0.1009
+observed/expected 97.5%       0.9086   0.9061
+
+== Sensitivity analyses (XGBoost, out-of-fold predictions)
+                                     products (weighted)    events   AUROC
+all products (main)                           22718307.0  149057.0  0.7389
+complete records only (D3)                    20246662.0   92762.0  0.6892
+28 weeks or more                              22548947.0   86097.0  0.7121
+fetal deaths vs no event                      22671779.0  102529.0  0.7530
+antepartum fetal deaths vs no event           22618220.0   48970.0  0.7332
+early neonatal deaths vs no event             22615778.0   46528.0  0.7078
+
+== Gate G4: classification of the primary model (XGBoost)
+C1 events already present      met by design (antenatal information precedes ...
+C2 outcome with time           NOT met (AUROC 0.739, 95% CI 0.737-0.740; requ...
+C3 detection bias              not applicable (the outcome does not depend on...
+C4 stability over time         NOT met (temporal AUROC 0.735; slope 0.98, 95%...
+events in top 10% vs chance                                           4.12 times
+classification                                                           NEITHER
+
+== Confusion matrix of XGBoost (out-of-fold, weighted to the development population)
+            TP      FN       FP        TN  accuracy  sensitivity  specificity     PPV      NPV
+flagged                                                                                       
+top 10%  61417   87640  2210450  20358800    0.8988        0.412       0.9021  0.0270  0.99571
+top 5%   46087  102970  1089850  21479400    0.9475        0.309       0.9517  0.0406  0.99523
+
+== Decision curve (XGBoost)
+           net benefit model  net benefit treat all  % flagged
+threshold                                                     
+0.005                0.00279                0.00157      35.98
+0.010                0.00174               -0.00347      12.22
+0.020                0.00107               -0.01371       3.68
+0.050                0.00052               -0.04573       0.83
