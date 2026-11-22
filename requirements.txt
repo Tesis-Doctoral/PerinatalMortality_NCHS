@@ -6,3 +6,5 @@ xgboost
 lightgbm
 matplotlib
 ipykernel
+catboost
+interpret

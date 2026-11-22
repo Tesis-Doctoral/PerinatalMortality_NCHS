@@ -1,0 +1,149 @@
+New learners on their own (perinatal model, version 2)
+
+== Data (same sample and split as notebook 07)
+development products (2016-2021)    22681046
+development events                    149057
+sample rows                           600442
+fit/tune part                         480353
+comparison part                       120089
+events in comparison part              29812
+continuous predictors (splines)     age, bmi
+
+== Random search of the new learners (20 combinations each, 3 inner folds on 30% of the fit part)
+                                                                                                                                    best combination  inner AUROC  minutes
+learner                                                                                                                                                                   
+LR splines                                                                                                               {"n_knots": 5, "C": 0.0003}       0.7261      1.1
+EBM                                                           {"interactions": 20, "learning_rate": 0.0308, "min_samples_leaf": 10, "max_bins": 256}       0.7348     31.6
+MLP                                            {"hidden_layer_sizes": [256, 128], "alpha": 0.0975, "learning_rate_init": 0.0009, "batch_size": 1024}       0.7320      6.9
+CatBoost    {"depth": 10, "learning_rate": 0.0103, "l2_leaf_reg": 2.9544, "random_strength": 0.131, "bagging_temperature": 0.3756, "iterations": 24}       0.7030      1.7
+
+== Spread of the inner AUROC over the combinations tried
+               min  median     max
+learner                           
+CatBoost    0.5899  0.6626  0.7030
+EBM         0.7304  0.7320  0.7348
+LR splines  0.7247  0.7251  0.7261
+MLP         0.4539  0.7277  0.7320
+
+== All combinations tried: LR splines
+    inner AUROC n_knots       C
+0        0.7261       5  0.0003
+1        0.7259       4  0.0003
+2        0.7259       8  0.0006
+3        0.7259       5  0.0007
+4        0.7259       4  0.0004
+5        0.7252       4  0.0018
+6        0.7252       6  0.0204
+7        0.7252       4  0.0023
+8        0.7251       6  0.1569
+9        0.7251       8  0.0062
+10       0.7250       5  0.5666
+11       0.7250       5  2.0528
+12       0.7250       5  3.0789
+13       0.7250       8  0.0393
+14       0.7249       8  0.1171
+15       0.7248       4  0.0269
+16       0.7247       4  0.0522
+17       0.7247       4  0.3072
+18       0.7247       4  0.3908
+19       0.7247       4  7.1595
+
+== All combinations tried: EBM
+    inner AUROC interactions  learning_rate min_samples_leaf max_bins
+0        0.7348           20         0.0308               10      256
+1        0.7347           20         0.0329              121      128
+2        0.7333           10         0.0187               63      256
+3        0.7333           10         0.0149               57      128
+4        0.7332           10         0.0120                7      512
+5        0.7332           10         0.0107                4      256
+6        0.7320            5         0.0181               10      512
+7        0.7320            5         0.0093               66      256
+8        0.7320            5         0.0342                3      128
+9        0.7320            5         0.0095                9      512
+10       0.7320            5         0.0064               55      512
+11       0.7320            5         0.0101                3      256
+12       0.7320            5         0.0097                4      128
+13       0.7305            0         0.0296                3      512
+14       0.7305            0         0.0319              159      128
+15       0.7304            0         0.0219              146      512
+16       0.7304            0         0.0236              192      128
+17       0.7304            0         0.0073               91      512
+18       0.7304            0         0.0059               15      256
+19       0.7304            0         0.0060               18      128
+
+== All combinations tried: MLP
+    inner AUROC hidden_layer_sizes   alpha  learning_rate_init batch_size
+0        0.7320         (256, 128)  0.0975              0.0009       1024
+1        0.7319         (256, 128)  0.0020              0.0017       1024
+2        0.7306             (128,)  0.0000              0.0034        512
+3        0.7305             (128,)  0.0001              0.0019        256
+4        0.7302         (256, 128)  0.0021              0.0057       1024
+5        0.7301         (256, 128)  0.0000              0.0005        256
+6        0.7298             (128,)  0.0000              0.0050       1024
+7        0.7294              (64,)  0.0001              0.0017        256
+8        0.7281             (128,)  0.0005              0.0023        256
+9        0.7279           (64, 32)  0.0179              0.0009        256
+10       0.7276          (128, 64)  0.0002              0.0061        256
+11       0.7272           (64, 32)  0.0002              0.0065        256
+12       0.7266             (128,)  0.0053              0.0065        256
+13       0.6105             (128,)  0.0059              0.0003        512
+14       0.6069              (64,)  0.0159              0.0002        256
+15       0.5984              (64,)  0.0036              0.0002       1024
+16       0.5777           (64, 32)  0.0000              0.0012       1024
+17       0.5045           (64, 32)  0.0000              0.0003        512
+18       0.4874           (64, 32)  0.0177              0.0002        512
+19       0.4539         (256, 128)  0.0047              0.0002       1024
+
+== All combinations tried: CatBoost
+    inner AUROC  learning_rate depth  l2_leaf_reg  random_strength  bagging_temperature
+0        0.7030         0.0103    10       2.9544           0.1310               0.3756
+1        0.6955         0.0199     5      12.9755           6.6295               0.6870
+2        0.6950         0.0181     5       1.4909           0.2594               0.5362
+3        0.6916         0.0206     8       1.3602           0.8356               0.6534
+4        0.6909         0.0221     4      12.3772           0.5775               0.2602
+5        0.6882         0.0129     9      24.4219           0.1324               0.9629
+6        0.6872         0.0148     4       1.8488           0.1666               0.1032
+7        0.6837         0.0192     8      12.9045           3.0153               0.4628
+8        0.6714         0.0362     6       8.6766           1.1051               0.9960
+9        0.6632         0.0702     7       6.8594           3.9016               0.0944
+10       0.6621         0.0489     6      16.8739           0.2389               0.2037
+11       0.6616         0.0678     6      10.1240           0.1170               0.0655
+12       0.6613         0.0434     9       8.2867           6.5940               0.8241
+13       0.6505         0.0796    10       1.4503           0.1947               0.9738
+14       0.6485         0.0758     9       8.3579           1.7879               0.7483
+15       0.6479         0.0827     8      14.7593           2.0517               0.0013
+16       0.6430         0.0430     8      23.0122           0.6549               0.4750
+17       0.6334         0.1056     9       1.0593           6.8590               0.7868
+18       0.6257         0.1058     5       5.5684           7.4951               0.8207
+19       0.5899         0.1826     8       5.8139           6.0811               0.7328
+
+== Each learner on its own, comparison part (prevalence 0.00656)
+             AUROC  AUROC 2.5%  AUROC 97.5%  minus XGB  minus XGB 2.5%  minus XGB 97.5%  AUPRC (weighted)  observed/expected  events in top 10% (%)
+XGB         0.7423      0.7386       0.7452     0.0000          0.0000           0.0000            0.0668              0.989                   41.6
+EBM         0.7356      0.7322       0.7385    -0.0067         -0.0075          -0.0057            0.0495              1.000                   40.7
+MLP         0.7311      0.7273       0.7342    -0.0111         -0.0123          -0.0099            0.0479              1.040                   39.6
+LR splines  0.7254      0.7217       0.7287    -0.0169         -0.0183          -0.0155            0.0373              0.876                   39.4
+CatBoost    0.7088      0.7049       0.7119    -0.0335         -0.0353          -0.0316            0.0288              0.027                   35.1
+
+== Selection
+best new learner                                                                                      EBM
+learners that beat XGBoost by 0.005 or more (CI > 0)                                                 none
+primary learner                                                                                       XGB
+next step                                               primary unchanged: the classification of versi...
+
+== Correlation of the predictions between learners (Spearman, comparison part)
+              XGB  LR splines    EBM    MLP  CatBoost
+XGB         1.000       0.913  0.961  0.937     0.860
+LR splines  0.913       1.000  0.941  0.917     0.807
+EBM         0.961       0.941  1.000  0.915     0.816
+MLP         0.937       0.917  0.915  1.000     0.811
+CatBoost    0.860       0.807  0.816  0.811     1.000
+
+== Confusion matrices at the top 10% of risk (weighted to the population of the comparison part)
+               TP     FN      FP       TN  accuracy  sensitivity  specificity     PPV      NPV
+learner                                                                                       
+XGB         12388  17424  442000  4071850    0.8989        0.416       0.9021  0.0273  0.99574
+LR splines  11747  18065  442650  4071200    0.8986        0.394       0.9019  0.0259  0.99558
+EBM         12126  17686  442250  4071600    0.8988        0.407       0.9020  0.0267  0.99568
+MLP         11813  17999  442600  4071250    0.8986        0.396       0.9019  0.0260  0.99560
+CatBoost    10468  19344  443950  4069900    0.8980        0.351       0.9016  0.0230  0.99527
