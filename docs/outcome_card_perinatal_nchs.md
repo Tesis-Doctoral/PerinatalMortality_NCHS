@@ -108,4 +108,10 @@ Taken after the audit ([`../count_audit.md`](../count_audit.md)) and before any 
 - **Reading:** 63% of events vs 89% of products have a complete record, so unknowns concentrate in the events; without them and without weeks 22–27, discrimination falls. With all records and imputation, 0.715.
 - **Returns used:** 1 of 2. The next one declared is R3 (option B, at admission for delivery).
 
+## 10. Version 2 (22/11/2026)
+
+- **Decision of the modeling team:** same population and predictors as version 1 plus gestational diabetes, gestational hypertension, eclampsia and smoking in pregnancy (D4 revised).
+- **Result:** XGBoost AUROC 0.742 (0.741–0.743); temporal 0.738, slope 0.98. C4 met; C2 not met. Classification: **neither**.
+- **Diagnostic:** gestational diabetes and hypertension enter with odds ratios below 1 in the whole population (0.66 and 0.85) and close to 1 from 28 weeks (0.96 and 0.98): their apparent protective effect comes from pregnancies that end before they can be diagnosed. Eclampsia (1.30) and smoking (1.42) are stable.
+
 *Confidential: internal use of the research project.*

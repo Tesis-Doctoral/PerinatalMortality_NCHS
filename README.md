@@ -29,6 +29,7 @@ The NCHS files are kept **outside the repository**, in the sibling folder `../NC
 | 4 | `notebooks/04_preliminary_learners.ipynb` | `data/outputs_04_preliminary_learners.txt` (preliminary run: hyperparameter search and choice of the primary learner) | S8 |
 | 5 | `notebooks/05_main_evaluation.ipynb` | `data/outputs_05_main_evaluation.txt` (recalibrated internal validation, temporal validation, sensitivities and classification) | S8, S9, G4 |
 | 6 | `notebooks/06_return_r4.ipynb` | `data/contract/perinatal_nchs_r4/` and `data/outputs_06_return_r4.txt` (return R4: 28 weeks or more, complete records, finer predictors; G2, G3, preliminary run, evaluation and classification) | R4, S7–S9, G2–G4 |
+| 7 | `notebooks/07_model_v2.ipynb` | `data/contract/perinatal_nchs_v2/` and `data/outputs_07_model_v2.txt` (version 2: version 1 population and predictors + gestational diabetes, gestational hypertension, eclampsia and smoking during pregnancy, by decision of the modeling team) | S7–S9, G2–G4 |
 
 Readers: `libraries/nchs_reader.py` (linked births and infant deaths) and `libraries/perinatal_builder.py` (fetal deaths and the join of both components). They read the ZIP files directly, without extracting them.
 

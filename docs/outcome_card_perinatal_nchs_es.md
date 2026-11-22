@@ -108,4 +108,10 @@ Tomadas después de la auditoría ([`../count_audit_es.md`](../count_audit_es.md
 - **Lectura:** tienen registro completo el 63% de los eventos frente al 89% de los productos, así que los desconocidos se concentran en los eventos; sin ellos y sin las 22–27 semanas, la discriminación baja. Con todos los registros e imputación, 0,715.
 - **Retornos usados:** 1 de 2. El siguiente declarado es R3 (opción B, al ingreso al parto).
 
+## 10. Versión 2 (22/11/2026)
+
+- **Decisión del equipo de modelado:** misma población y predictores de la versión 1 más diabetes gestacional, hipertensión gestacional, eclampsia y tabaquismo en el embarazo (D4 revisada).
+- **Resultado:** XGBoost AUROC 0,742 (0,741–0,743); temporal 0,738, pendiente 0,98. Cumple C4; no cumple C2. Clasificación: **ninguno**.
+- **Diagnóstico:** la diabetes y la hipertensión gestacionales entran con razón de odds menor de 1 en toda la población (0,66 y 0,85) y cercana a 1 desde las 28 semanas (0,96 y 0,98): su efecto protector aparente viene de los embarazos que terminan antes de poder diagnosticarlas. La eclampsia (1,30) y el tabaquismo (1,42) son estables.
+
 *Confidencial: uso interno del proyecto de investigación.*
