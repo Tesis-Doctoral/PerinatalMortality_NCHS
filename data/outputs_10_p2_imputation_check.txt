@@ -36,3 +36,12 @@ AUROC median                                                                    
 AUROC random draw                                                                       0.7234
 median imputation carries a material form signal (drop > 0.005 with CI below 0)           True
 imputation for version 3                                                           random draw
+
+== Original objective: best sensitivity-specificity pairs (all records, 5-fold out-of-fold predictions)
+                                      median random draw
+balanced point: sensitivity            0.679       0.661
+balanced point: specificity            0.679       0.661
+balanced point: risk cut              0.0052      0.0054
+specificity when sensitivity >= 0.75    0.58       0.541
+sensitivity when specificity >= 0.75   0.616        0.58
+some threshold gives both >= 0.75      False       False
