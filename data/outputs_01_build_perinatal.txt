@@ -32,3 +32,10 @@ RF_EHYPE                         0.1                       5.9
 RF_INFT                          0.1                       5.9
 RF_CESAR                         0.1                       5.9
 RF_CESARN                        0.1                       6.3
+MHTR                             0.5                       6.6
+CIG_1                            0.4                       8.4
+RF_DRG                           0.2                       6.0
+RF_ART                           0.2                       6.0
+SEX                              0.0                       0.0
+DLMP_MM                          4.5                      15.8
+FAGECOMB                        11.5                      25.7

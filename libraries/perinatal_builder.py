@@ -51,6 +51,14 @@ SHARED = {
     "RF_CESARN": ((332, 333, "int"), (266, 267)),
     "DPLURAL": ((454, 454, "int"), (301, 301)),
     "RESTATUS": ((104, 104, "int"), (131, 131)),
+    # added for the completed second return (version 2), 2026-11-23: remaining antenatal fields shared by both files
+    "MHTR": ((280, 281, "int"), (243, 244)),        # mother's height in inches (99 unknown)
+    "CIG_1": ((255, 256, "int"), (232, 233)),       # cigarettes per day, 1st trimester (99 unknown)
+    "RF_DRG": ((326, 326, "chr"), (263, 263)),      # fertility-enhancing drugs (Y, N, U; X = no infertility treatment)
+    "RF_ART": ((327, 327, "chr"), (264, 264)),      # assisted reproductive technology (Y, N, U; X)
+    "SEX": ((475, 475, "chr"), (316, 316)),         # sex of the product (M, F, U)
+    "DLMP_MM": ((477, 478, "int"), (318, 319)),     # month of last normal menses (99 unknown)
+    "FAGECOMB": ((147, 148, "int"), (177, 178)),    # father's combined age (99 unknown; sensitivity only)
 }
 LB_FIELDS = {k: v[0] for k, v in SHARED.items()}
 LB_FIELDS.update({

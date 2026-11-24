@@ -1,0 +1,38 @@
+Gate G2 check of the imputation (perinatal model, version 2b, development 2016-2021)
+
+== Version 2b: predictors and XGBoost hyperparameters (from data/outputs_09_model_v2b.txt)
+parameters                                                                                                                                                                                           35
+hyperparameters    {"max_depth": 6, "learning_rate": 0.027, "min_child_weight": 1.3367, "subsample": 0.697, "colsample_bytree": 0.8543, "reg_lambda": 8.8833, "reg_alpha": 0.8853, "n_estimators": 337}
+
+== Development sample (2016-2021, all records)
+rows                                                600442.0
+events                                              149057.0
+fetal deaths                                        102529.0
+early neonatal deaths                                46528.0
+% records with an unknown, non-events (weighted)        13.8
+% records with an unknown, fetal deaths                 46.9
+% records with an unknown, early neonatal deaths        31.8
+
+== AUROC by imputation strategy (5-fold cross-validation, recalibrated, same folds)
+                                     median  random draw  median + ind  native
+all records                          0.7455       0.7234        0.7699  0.7704
+fetal deaths vs non-events           0.7602       0.7318        0.7925  0.7930
+early neonatal deaths vs non-events  0.7131       0.7049        0.7200  0.7205
+complete records                     0.6889       0.6901        0.6903  0.6909
+records with an unknown              0.7386       0.7025        0.8260  0.8267
+
+== AUROC difference with median imputation, all records (paired bootstrap, 95% CI)
+              difference vs median    2.5%   97.5%
+random draw                -0.0221 -0.0227 -0.0215
+median + ind                0.0244  0.0238  0.0251
+native                      0.0249  0.0243  0.0257
+
+== Recoverability of missingness: AUROC for 'record had an unknown' from the imputed predictors
+median         0.9130
+random draw    0.7695
+
+== Decision (gate G2, imputation)
+AUROC median                                                                            0.7455
+AUROC random draw                                                                       0.7234
+median imputation carries a material form signal (drop > 0.005 with CI below 0)           True
+imputation for version 3                                                           random draw

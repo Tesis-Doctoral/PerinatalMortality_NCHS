@@ -4,7 +4,7 @@
 
 Can pregnancies at high risk of ending in a perinatal death (fetal death at 22 weeks or more, or neonatal death in the first 7 days) be identified? This model uses the public-use files of the National Center for Health Statistics (NCHS, CDC) and follows the staged framework for clinical prediction models.
 
-> **Status (2026-11-21): outcome card written and decisions D1 and D2 resolved.** Fetal component data: public-use fetal death files 2016–2023. Prediction point: antenatal (option A). Data adapter done: 8 years (2016–2023), 22,337 to 27,006 perinatal events per year ([`data/outputs_01_build_perinatal.txt`](data/outputs_01_build_perinatal.txt)). Count audit done ([`count_audit.md`](count_audit.md)): G1 passes. Decisions D3 to D5 approved. Predictor table (24 parameters) and gates G2 and G3 passed ([`predictor_table.md`](predictor_table.md)). Next: modeling (S8).
+> **Status (2026-11-24): model closed as insufficient signal.** XGBoost, clean AUROC 0.723 (version 2b with random-draw imputation; [`data/outputs_10_p2_imputation_check.txt`](data/outputs_10_p2_imputation_check.txt)). The 0.7455 of version 2b included the form-type signal carried by median imputation, detected by gate G2. Model M5 of the catalogue.
 
 [Versión en español](README_es.md)
 
@@ -31,6 +31,8 @@ The NCHS files are kept **outside the repository**, in the sibling folder `../NC
 | 6 | `notebooks/06_return_r4.ipynb` | `data/contract/perinatal_nchs_r4/` and `data/outputs_06_return_r4.txt` (return R4: 28 weeks or more, complete records, finer predictors; G2, G3, preliminary run, evaluation and classification) | R4, S7–S9, G2–G4 |
 | 7 | `notebooks/07_model_v2.ipynb` | `data/contract/perinatal_nchs_v2/` and `data/outputs_07_model_v2.txt` (version 2: version 1 population and predictors + gestational diabetes, gestational hypertension, eclampsia and smoking during pregnancy, by decision of the modeling team) | S7–S9, G2–G4 |
 | 8 | `notebooks/08_new_learners.ipynb` | `data/outputs_08_new_learners.txt` (version 2 data: logistic regression with splines, EBM, MLP and CatBoost on their own against XGBoost; needs `catboost` and `interpret`) | S8 |
+| 9 | `notebooks/09_model_v2b.ipynb` | `data/contract/perinatal_nchs_v2b/` and `data/outputs_09_model_v2b.txt` (version 2 completed, second return: + mother's height, cigarettes in the 1st trimester, fertility drugs and assisted reproduction, sex of the product, month of last menses; father's age as sensitivity). Requires notebook 01 rebuilt with `REBUILD = True` | S7–S9, G2–G4 |
+| 10 | `notebooks/10_p2_imputation_check.ipynb` | `data/outputs_10_p2_imputation_check.txt` (gate G2 check of median imputation before version 3: median vs random-draw imputation, explicit indicators and native handling) | G2 |
 
 Readers: `libraries/nchs_reader.py` (linked births and infant deaths) and `libraries/perinatal_builder.py` (fetal deaths and the join of both components). They read the ZIP files directly, without extracting them.
 
